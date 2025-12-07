@@ -1125,6 +1125,112 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      {/* Instagram Videos Section */}
+      <AnimatedSection variant="zoomRotate">
+        <section className="py-10 md:py-12 lg:py-16 bg-card relative overflow-hidden border-t border-primary/10" id="instagram-videos">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,200,83,0.05),transparent_70%)]" />
+          <div className="w-full px-3 md:px-5 lg:px-6 relative">
+            <div className="text-center mb-10 md:mb-12 lg:mb-16 px-4 md:px-6 lg:px-8">
+              <motion.h2 
+                className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3 tracking-tight text-foreground"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                Workout with HOC <span className="text-primary">Community</span>
+              </motion.h2>
+              <motion.p 
+                className="text-sm md:text-base lg:text-lg text-black dark:text-white max-w-2xl mx-auto font-semibold"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                Experience the energy, dedication, and transformation happening daily
+              </motion.p>
+            </div>
+            
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-3 lg:gap-4"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={staggerContainer}
+            >
+              {[
+                { src: instagramVideo1, testId: "instagram-video-1", hideOnDesktop: false },
+                { src: instagramVideo2, testId: "instagram-video-2", hideOnDesktop: false },
+                { src: instagramVideo3, testId: "instagram-video-3", hideOnDesktop: false },
+                { src: instagramVideo4, testId: "instagram-video-4", hideOnDesktop: false },
+                { src: instagramVideo5, testId: "instagram-video-5", hideOnDesktop: false },
+                { src: instagramVideo6, testId: "instagram-video-6", hideOnDesktop: true }
+              ].map((video, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={fadeInUp}
+                  className={`group relative rounded-lg overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 w-full aspect-[9/16] ${video.hideOnDesktop ? 'lg:hidden' : ''}`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                  <video
+                    src={video.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                    data-testid={video.testId}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Social Links */}
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mt-10">
+              <a 
+                href="https://www.instagram.com/house_of_champions_studio/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 group hover-elevate transition-all duration-300 border-2 border-primary rounded-full px-5 py-2.5"
+                data-testid="link-instagram-profile"
+              >
+                <div className="w-7 h-7 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <img 
+                    src={instagramIcon} 
+                    alt="Instagram" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-foreground text-base md:text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                  house_of_champions_studio
+                </span>
+              </a>
+
+              <a 
+                href="https://www.facebook.com/house_of_champions_studio/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 group hover-elevate transition-all duration-300 border-2 border-primary rounded-full px-5 py-2.5"
+                data-testid="link-facebook-profile"
+              >
+                <div className="w-7 h-7 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <img 
+                    src={facebookIcon} 
+                    alt="Facebook" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-foreground text-base md:text-lg font-semibold group-hover:text-primary transition-colors duration-300">
+                  house_of_champions_studio
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* About House of Champions */}
       <AnimatedSection variant="fadeIn">
         <section className="py-10 md:py-12 lg:py-16 bg-card relative overflow-hidden border-t border-primary/10" id="about">
@@ -1282,100 +1388,6 @@ export default function Home() {
                 ))}
               </div>
             </motion.div>
-          </div>
-        </section>
-      </AnimatedSection>
-
-      {/* Instagram Videos Section */}
-      <AnimatedSection variant="zoomRotate">
-        <section className="py-10 md:py-12 lg:py-16 bg-card relative overflow-hidden border-t border-primary/10" id="instagram-videos">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,200,83,0.05),transparent_70%)]" />
-          <div className="w-full px-3 md:px-5 lg:px-6 relative">
-            <div className="text-center mb-10">
-              <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground">
-                Workout with HOC <span className="text-primary">Community</span>
-              </h2>
-              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto font-bold">
-                Experience the energy, dedication, and transformation happening daily
-              </p>
-            </div>
-            
-            <motion.div 
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-3 lg:gap-4"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={staggerContainer}
-            >
-              {[
-                { src: instagramVideo1, testId: "instagram-video-1", hideOnDesktop: false },
-                { src: instagramVideo2, testId: "instagram-video-2", hideOnDesktop: false },
-                { src: instagramVideo3, testId: "instagram-video-3", hideOnDesktop: false },
-                { src: instagramVideo4, testId: "instagram-video-4", hideOnDesktop: false },
-                { src: instagramVideo5, testId: "instagram-video-5", hideOnDesktop: false },
-                { src: instagramVideo6, testId: "instagram-video-6", hideOnDesktop: true }
-              ].map((video, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={fadeInUp}
-                  className={`group relative rounded-lg overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 w-full aspect-[9/16] ${video.hideOnDesktop ? 'lg:hidden' : ''}`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                  <video
-                    src={video.src}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                    data-testid={video.testId}
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Social Links */}
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mt-10">
-              <a 
-                href="https://www.instagram.com/house_of_champions_studio/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group hover-elevate transition-all duration-300 border-2 border-primary rounded-full px-5 py-2.5"
-                data-testid="link-instagram-profile"
-              >
-                <div className="w-7 h-7 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <img 
-                    src={instagramIcon} 
-                    alt="Instagram" 
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="text-foreground text-base md:text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                  house_of_champions_studio
-                </span>
-              </a>
-
-              <a 
-                href="https://www.facebook.com/house_of_champions_studio/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 group hover-elevate transition-all duration-300 border-2 border-primary rounded-full px-5 py-2.5"
-                data-testid="link-facebook-profile"
-              >
-                <div className="w-7 h-7 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <img 
-                    src={facebookIcon} 
-                    alt="Facebook" 
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="text-foreground text-base md:text-lg font-semibold group-hover:text-primary transition-colors duration-300">
-                  house_of_champions_studio
-                </span>
-              </a>
-            </div>
           </div>
         </section>
       </AnimatedSection>
