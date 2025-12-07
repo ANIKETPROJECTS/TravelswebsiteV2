@@ -1853,77 +1853,108 @@ export default function Home() {
 
       {/* FAQ Section */}
       <AnimatedSection variant="slideUp">
-        <section className="py-10 md:py-12 lg:py-16 bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 relative overflow-hidden border-t border-primary/10" id="faq">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-          <div className="container px-4 md:px-6 relative max-w-6xl mx-auto">
-            <div className="text-center mb-10 md:mb-12 lg:mb-16">
+        <section className="py-8 md:py-10 lg:py-12 bg-gradient-to-br from-green-50 via-emerald-50 to-green-100 relative overflow-hidden border-t border-primary/10" id="faq">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-emerald-200/20 rounded-full blur-3xl" />
+          <div className="container px-4 md:px-6 relative max-w-5xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-6 md:mb-8">
               <motion.h2 
-                className="font-heading text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3 tracking-tight text-foreground"
-                initial={{ opacity: 0, y: 20 }}
+                className="font-heading text-2xl md:text-3xl lg:text-4xl font-extrabold mb-2 tracking-tight text-foreground"
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.5 }}
                 data-testid="heading-faq"
               >
-                Frequently Asked <span className="text-primary">Questions</span>
+                Got <span className="text-primary">Questions?</span>
               </motion.h2>
+              <motion.p 
+                className="text-xs md:text-sm lg:text-base text-muted-foreground max-w-lg mx-auto"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                Everything you need to know about our online fitness coaching
+              </motion.p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {/* FAQ Items - Accordion Style */}
+            <div className="space-y-2 md:space-y-3">
               {[
                 {
-                  question: "Do I need equipment?",
-                  answer: "No, programs can be done with or without equipment.",
+                  question: "How does online coaching work?",
+                  answer: "You'll get a personalized workout plan, diet guidance, and weekly video check-ins with your coach. Everything is accessible through WhatsApp - workouts, nutrition tips, form corrections, and direct messaging with your trainer.",
+                  testId: "faq-how-it-works"
+                },
+                {
+                  question: "Do I need gym equipment?",
+                  answer: "Not at all! We design programs that work for your situation - whether you have a full gym, basic equipment at home, or no equipment at all. Your plan is customized to what you have access to.",
                   testId: "faq-equipment"
                 },
                 {
-                  question: "Will the diet be strict?",
-                  answer: "No, it will be flexible and based on your daily routine.",
+                  question: "Will the diet plan be too strict to follow?",
+                  answer: "No strict diets here! We create flexible nutrition plans based on foods you already enjoy. No complicated meal preps or expensive supplements - just simple, sustainable eating habits that fit your lifestyle.",
                   testId: "faq-diet"
                 },
                 {
-                  question: "Batch time?",
-                  answer: "Multiple batches available.",
-                  testId: "faq-batch-time"
+                  question: "I'm a complete beginner. Can I still join?",
+                  answer: "Absolutely! Most of our members start as beginners. Your program will be designed for your current fitness level with proper progression. We focus on building correct form and habits first.",
+                  testId: "faq-beginners"
                 },
                 {
-                  question: "Do you train beginners?",
-                  answer: "Yes.",
-                  testId: "faq-beginners"
+                  question: "What's included in the 1-day trial for ₹99?",
+                  answer: "The trial includes a full day of coaching experience - a sample workout plan, diet recommendations for the day, and direct access to chat with your assigned coach. It's the perfect way to experience our coaching style.",
+                  testId: "faq-trial"
+                },
+                {
+                  question: "How soon will I see results?",
+                  answer: "Most clients notice improved energy and strength within 2 weeks. Visible body transformation typically starts showing in 4-6 weeks with consistent effort. We track your progress weekly to ensure you're moving forward.",
+                  testId: "faq-results"
                 },
               ].map((faq, i) => {
                 const isOpen = openFaqIndex === i;
                 return (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    transition={{ duration: 0.3, delay: i * 0.05 }}
                   >
-                    <Card 
-                      className="bg-gradient-to-br from-green-100/80 via-emerald-50/90 to-green-50 border-2 border-primary/20 hover-elevate transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl hover:border-primary/40 backdrop-blur-sm" 
+                    <div 
+                      className={`bg-white/80 backdrop-blur-sm rounded-xl border transition-all duration-300 cursor-pointer ${
+                        isOpen 
+                          ? 'border-primary/40 shadow-md' 
+                          : 'border-primary/10 hover:border-primary/25 hover:shadow-sm'
+                      }`}
                       data-testid={faq.testId}
                       onClick={() => setOpenFaqIndex(isOpen ? null : i)}
                     >
-                      <CardContent className="p-5 md:p-6">
+                      <div className="p-3 md:p-4">
                         <div className="flex items-center justify-between gap-3">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center flex-shrink-0 shadow-md">
-                              <MessageSquare className="h-4 w-4 text-white" />
+                          <div className="flex items-center gap-2.5">
+                            <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                              isOpen 
+                                ? 'bg-gradient-to-br from-emerald-500 to-green-600' 
+                                : 'bg-primary/10'
+                            }`}>
+                              <span className={`text-sm md:text-base font-bold ${isOpen ? 'text-white' : 'text-primary'}`}>
+                                {i + 1}
+                              </span>
                             </div>
-                            <h3 className="font-heading text-base md:text-lg font-bold text-foreground" data-testid={`question-${faq.testId}`}>
+                            <h3 className="font-heading text-sm md:text-base font-semibold text-foreground" data-testid={`question-${faq.testId}`}>
                               {faq.question}
                             </h3>
                           </div>
                           <motion.div
                             animate={{ rotate: isOpen ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0"
+                            transition={{ duration: 0.2 }}
+                            className="flex-shrink-0"
                           >
                             <svg
-                              className="w-4 h-4 text-primary"
+                              className={`w-4 h-4 md:w-5 md:h-5 transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-muted-foreground'}`}
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -1942,23 +1973,32 @@ export default function Home() {
                           animate={{
                             height: isOpen ? "auto" : 0,
                             opacity: isOpen ? 1 : 0,
-                            marginTop: isOpen ? 16 : 0
+                            marginTop: isOpen ? 12 : 0
                           }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.25 }}
                           style={{ overflow: "hidden" }}
                         >
-                          <div className="pl-11 border-l-2 border-primary/30 ml-4">
-                            <p className="text-muted-foreground text-sm md:text-base leading-relaxed pl-4" data-testid={`answer-${faq.testId}`}>
-                              {faq.answer}
-                            </p>
-                          </div>
+                          <p className="text-muted-foreground text-xs md:text-sm leading-relaxed pl-9 md:pl-10 pr-2" data-testid={`answer-${faq.testId}`}>
+                            {faq.answer}
+                          </p>
                         </motion.div>
-                      </CardContent>
-                    </Card>
+                      </div>
+                    </div>
                   </motion.div>
                 );
               })}
             </div>
+
+            {/* Bottom text */}
+            <motion.p 
+              className="text-center text-xs md:text-sm text-muted-foreground mt-5 md:mt-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Still have questions? <button onClick={openWhatsApp} className="text-primary font-semibold hover:underline" data-testid="button-faq-whatsapp">Chat with us on WhatsApp</button>
+            </motion.p>
           </div>
         </section>
       </AnimatedSection>
