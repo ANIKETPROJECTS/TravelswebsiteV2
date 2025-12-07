@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useInView } from "@/hooks/use-in-view";
@@ -457,67 +457,137 @@ export default function Home() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] bg-background/95 backdrop-blur-md border-l border-primary/20">
-              <SheetClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-                <X className="h-6 w-6 text-foreground" />
-                <span className="sr-only">Close</span>
-              </SheetClose>
-              <nav className="flex flex-col gap-6 mt-8">
-                <button 
-                  onClick={() => { document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  ABOUT US
-                </button>
-                <button 
-                  onClick={() => { document.getElementById('instagram-videos')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  COMMUNITY
-                </button>
-                <button 
-                  onClick={() => { document.getElementById('transformations')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  TRANSFORMATIONS
-                </button>
-                <button 
-                  onClick={() => { document.getElementById('program')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  SERVICES
-                </button>
-                {/* <button 
-                  onClick={() => { document.querySelector('section.bg-white')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium hover:text-primary transition-colors text-left"
-                >
-                  <span className="text-pink-500">WOMENS PROGRAM</span>
-                </button> */}
-                <button 
-                  onClick={() => { document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  PACKAGES
-                </button>
-                <button 
-                  onClick={() => { document.getElementById('trainers')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  TRAINERS
-                </button>
-                <button 
-                  onClick={() => { document.querySelector('[data-testid="section-testimonials"]')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  TESTIMONIALS
-                </button>
-                <button 
-                  onClick={() => { document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
-                >
-                  CONTACT
-                </button>
-              </nav>
+            <SheetContent side="right" className="w-[320px] bg-background border-l border-primary/20 p-0 overflow-y-auto">
+              <div className="flex flex-col h-full">
+                {/* Logo Header */}
+                <div className="flex items-center justify-center py-4 px-4 border-b border-primary/10 bg-card">
+                  <img 
+                    src={hocLogo} 
+                    alt="Train With Winston" 
+                    className="h-16 w-auto"
+                    data-testid="img-mobile-menu-logo"
+                  />
+                </div>
+                
+                {/* Navigation Links */}
+                <nav className="flex flex-col gap-1 py-4 px-4 border-b border-primary/10">
+                  {[
+                    { id: 'about', label: 'ABOUT US' },
+                    { id: 'instagram-videos', label: 'COMMUNITY' },
+                    { id: 'transformations', label: 'TRANSFORMATIONS' },
+                    { id: 'program', label: 'SERVICES' },
+                    { id: 'pricing', label: 'PACKAGES' },
+                    { id: 'trainers', label: 'TRAINERS' },
+                    { selector: '[data-testid="section-testimonials"]', label: 'TESTIMONIALS' },
+                    { id: 'contact', label: 'CONTACT' }
+                  ].map((item, idx) => (
+                    <button 
+                      key={idx}
+                      onClick={() => { 
+                        if (item.id) {
+                          document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' });
+                        } else if (item.selector) {
+                          document.querySelector(item.selector)?.scrollIntoView({ behavior: 'smooth' });
+                        }
+                        setMobileMenuOpen(false); 
+                      }}
+                      className="text-base font-semibold text-foreground hover:text-primary hover:bg-primary/5 transition-all text-left py-2.5 px-3 rounded-md"
+                      data-testid={`button-mobile-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </nav>
+
+                {/* Social Media Links */}
+                <div className="py-4 px-4 border-b border-primary/10">
+                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Follow Us</h4>
+                  <div className="flex items-center gap-3">
+                    <a 
+                      href="https://www.instagram.com/house_of_champions_studio/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 hover:scale-110 transition-transform"
+                      data-testid="link-mobile-instagram"
+                    >
+                      <img src={instagramIcon} alt="Instagram" className="w-5 h-5 invert" />
+                    </a>
+                    <a 
+                      href="https://www.facebook.com/house_of_champions_studio/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 hover:scale-110 transition-transform"
+                      data-testid="link-mobile-facebook"
+                    >
+                      <img src={facebookIcon} alt="Facebook" className="w-5 h-5 invert" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Contact Information */}
+                <div className="py-4 px-4 border-b border-primary/10 space-y-3">
+                  <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-3">Contact Us</h4>
+                  
+                  {/* Phone */}
+                  <a 
+                    href="tel:+918374627462" 
+                    className="flex items-center gap-3 text-sm text-foreground hover:text-primary transition-colors group"
+                    data-testid="link-mobile-phone"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Phone className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="font-medium">+91 8374627462</span>
+                  </a>
+                  
+                  {/* Email */}
+                  <a 
+                    href="mailto:houseofchampions.in@gmail.com" 
+                    className="flex items-center gap-3 text-sm text-foreground hover:text-primary transition-colors group"
+                    data-testid="link-mobile-email"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Mail className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="font-medium">houseofchampions.in@gmail.com</span>
+                  </a>
+                  
+                  {/* Address */}
+                  <div className="flex items-start gap-3 text-sm text-foreground">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="font-medium leading-relaxed">House of Champions Studio, Hyderabad, India</span>
+                  </div>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="py-4 px-4 space-y-3 mt-auto">
+                  {/* WhatsApp Button */}
+                  <a 
+                    href="https://wa.me/918374627462?text=Hi%20Coach%20Winston!%20I%27m%20interested%20in%20your%20fitness%20coaching%20program."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-[#25D366] hover:bg-[#20BD5A] text-white font-bold rounded-lg transition-all shadow-md"
+                    data-testid="button-mobile-whatsapp"
+                  >
+                    <img src={whatsappIcon} alt="WhatsApp" className="w-5 h-5" />
+                    <span>Chat on WhatsApp</span>
+                  </a>
+                  
+                  {/* Consult Now Button */}
+                  <Button 
+                    onClick={() => { 
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }); 
+                      setMobileMenuOpen(false); 
+                    }}
+                    className="w-full py-3 font-bold text-base"
+                    data-testid="button-mobile-consult-now"
+                  >
+                    Consult Now
+                  </Button>
+                </div>
+              </div>
             </SheetContent>
           </Sheet>
           
