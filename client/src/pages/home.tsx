@@ -453,18 +453,18 @@ export default function Home() {
           {/* Mobile Menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="lg:hidden">
-              <Button variant="outline" size="icon" className="h-10 w-10">
-                <Menu className="h-5 w-5" />
-              </Button>
+              <button className="p-1 focus:outline-none" data-testid="button-mobile-menu-trigger">
+                <Menu className="h-8 w-8 text-foreground" />
+              </button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[320px] bg-background border-l border-primary/20 p-0 overflow-y-auto">
               <div className="flex flex-col h-full">
                 {/* Logo Header */}
-                <div className="flex items-center justify-center py-6 px-4 border-b border-primary/10 bg-card">
+                <div className="flex items-center justify-center pt-2 pb-3 px-4 border-b border-primary/10">
                   <img 
                     src={hocLogo} 
                     alt="Train With Winston" 
-                    className="h-28 w-auto"
+                    className="h-20 w-auto"
                     data-testid="img-mobile-menu-logo"
                   />
                 </div>
