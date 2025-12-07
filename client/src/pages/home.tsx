@@ -964,7 +964,7 @@ export default function Home() {
                 Witness the <span className="text-primary">Transformation</span>
               </motion.h2>
               <motion.p 
-                className="text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto font-semibold"
+                className="text-sm md:text-base lg:text-lg text-black dark:text-white max-w-2xl mx-auto font-semibold"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
