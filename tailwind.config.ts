@@ -76,10 +76,23 @@ export default {
           border: "var(--sidebar-accent-border)"
         },
         status: {
-          online: "rgb(34 197 94)",
+          online: "rgb(102 172 66)",
           away: "rgb(245 158 11)",
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
+        },
+        brand: {
+          DEFAULT: "#66ac42",
+          50: "#f4f9f1",
+          100: "#e6f2de",
+          200: "#cee5bf",
+          300: "#a9d292",
+          400: "#85bd68",
+          500: "#66ac42",
+          600: "#4e8832",
+          700: "#3e6b29",
+          800: "#345625",
+          900: "#2c4821",
         },
       },
       fontFamily: {

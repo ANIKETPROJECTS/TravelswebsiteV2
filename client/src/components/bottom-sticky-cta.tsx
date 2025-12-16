@@ -62,7 +62,7 @@ export function BottomStickyCta({
 
           <Button
             size="lg"
-            className="bg-[#00C753] hover:bg-[#00C753]/90 text-white px-6 md:px-8 whitespace-nowrap font-bold shadow-md rounded-full"
+            className="bg-[#66ac42] hover:bg-[#66ac42]/90 text-white px-6 md:px-8 whitespace-nowrap font-bold shadow-md rounded-full"
             onClick={handleClick}
             data-testid="button-sticky-register"
           >
