@@ -2769,8 +2769,8 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Mail className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
-                  <a href="mailto:hoc@gmail.com" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-email">
-                    hoc@gmail.com
+                  <a href="mailto:trainwithwinston@gmail.com" className="text-muted-foreground hover:text-primary transition-colors" data-testid="link-email">
+                    trainwithwinston@gmail.com
                   </a>
                 </li>
               </ul>

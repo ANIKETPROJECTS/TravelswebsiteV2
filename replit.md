@@ -26,7 +26,7 @@ The contact form sends emails using Gmail SMTP via Nodemailer. Required environm
 - Opens WhatsApp with pre-filled message for consultations
 
 ## Contact Information
-- Email: hoc@gmail.com
+- Email: trainwithwinston@gmail.com
 - Phone: +91 89280 00407
 - Location: Bengaluru, Karnataka
 
@@ -123,7 +123,7 @@ The contact form sends emails using Gmail SMTP via Nodemailer. Required environm
 - **UI Updates** (November 27, 2025):
   - Removed dark mode toggle completely - website stays in white + green theme only
   - Added scroll-to-top button on bottom-left (white bg, green border/icon, rounded shape, hover effects)
-  - Updated contact details: Phone +91 89280 00407, Email hoc@gmail.com
+  - Updated contact details: Phone +91 89280 00407, Email trainwithwinston@gmail.com
   - Fixed transformation images to show full body (object-contain instead of object-cover)
 - **Mobile Responsiveness & UI Fixes** (November 27, 2025):
   - Fixed Review/Testimonials section on mobile: white card background with proper text contrast
